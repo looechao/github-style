@@ -1,8 +1,12 @@
 {{ define "posts" }}
+
 <div>
   <div class="position-relative">
     <div>
       {{ if eq .Type "tags" }}
+        {{if gt (len .Site.Taxonomies.tags) 0}}
+          {{partial "tags.html" .}}
+        {{end}}
       <div class="TableObject border-bottom border-gray-light py-3">
         <div class="user-repo-search-results-summary TableObject-item TableObject-item--primary v-align-top">
           <strong>{{ len .Pages }}</strong>
@@ -10,7 +14,7 @@
           for <strong>{{ .Title }}</strong>
         </div>
         <div class="TableObject-item text-right v-align-top">
-          <a class="issues-reset-query text-normal d-inline-block ml-3" href="{{ .Site.BaseURL }}/post/">
+          <a class="issues-reset-query text-normal d-inline-block ml-3" href="{{ .Site.BaseURL }}/tags/">
             <svg class="octicon octicon-x issues-reset-query-icon mt-1" viewBox="0 0 16 16" version="1.1" width="16"
               height="16">
               <path fill-rule="evenodd"
@@ -21,10 +25,6 @@
           </a>
         </div>
       </div>
-      {{else}}
-        {{if gt (len .Site.Taxonomies.tags) 0}}
-          {{partial "tags.html" .}}
-        {{end}}
       {{ end }}
       <ul>
         {{ range .Paginator.Pages }}

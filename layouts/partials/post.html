@@ -1,44 +1,41 @@
 <div>
   <main>
-    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
-      <div class="px-0">
-        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
-          <div class="flex-auto min-width-0 width-fit mr-3">
-            <div class="d-flex">
-              <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="{{ .Site.BaseURL }}">
-                  <img class=" avatar-user"
-                    src="{{ with $.Site.Params.avatar }}{{ $.Site.Params.avatar }}{{ else }}{{ "images/avatar.png" | absURL }}{{ end }}"
-                    width="32" height="32"></a>
-              </div>
-              <div class="d-flex flex-column">
-                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
-                  <span class="author">
-                    <a href="{{ .Site.BaseURL }}">{{ .Site.Params.author }}</a>
-                  </span>
-                  <span class="path-divider">/</span>
-                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="{{ .Permalink }}">{{ .Title }}</a>
-                  </strong>
-                </h1>
-                <div class="note m-0">
-                  Created <relative-time datetime="{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}"
-                    class="no-wrap">
-                    {{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</relative-time>
+    <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav pt-lg-4 "> <!-- pt-0を除去; 小画面でもタイトル表示するため -->
+                <div class="repohead-details-container clearfix container-lg p-responsive d-lg-block"> <!-- d-noneを除去 -->
+                    <div class="d-flex">
+                        <h1 class="public css-truncate float-none flex-auto width-fit pl-0">
+                            <a class="avatar mr-1" href="{{ .Site.BaseURL }}">
+                            {{ with $.Site.Params.avatar }}
+                                <img src="{{  $.Site.Params.avatar  }}" class="avatar-user" width="26" height="26" title="{{ $.Site.Params.author }}">
+                            {{ else }}
+                                <img src="{{ "images/avatar.png" | absURL }}" class="avatar-user" width="26" height="26" title="{{ $.Site.Params.author }}">
+                            {{ end }}
+                            </a>
+                            <!--<span class="author"><a href="{{ absURL "about/" }}">{{ .Site.Params.author }}</a></span>
+                            <span class="path-divider">/</span> -->
+                            <strong itemprop="name"><a href="{{ .Permalink }}">{{ .Title }}</a></strong>
 
-                  {{ if .Site.Params.lastmod }}
-                  <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}"
-                    class="no-wrap">
-                    {{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</relative-time>
-                  {{ end }}
+                            {{ with .Params.description }}<div class="text-small text-gray mb-1 mt-1">{{ . }}</div>{{ end }}
+
+                            <!-- display timestamp -->
+                            <div class="d-block text-small text-gray">
+                                <span class="d-inline-block">
+                                    Created at <time datetime="{{ .PublishDate.Format "2006-01-02 15:04" }}" class="no-wrap">
+                                        {{ .PublishDate.Format "2006-01-02 15:04" }}</time>
+                                </span>
+
+                                {{ if ne .PublishDate .Lastmod }}
+                                <span class="file-info-divider"></span>
+                                <span class="d-inline-block">
+                                    Updated at <time datetime="{{ .Lastmod.Format "2006-01-02 15:04" }}" class="no-wrap">
+                                        {{ .Lastmod.Format "2006-01-02 15:04" }}</time>
+                                    {{ end }}
+                                </span>
+                            </div>
+                        </h1>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="container-lg px-3 new-discussion-timeline">
       <div class="repository-content gist-content">

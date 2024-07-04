@@ -175,6 +175,20 @@
           {{ end }}
          </div>
         </div>
+
+        <div class="border-top py-2 clearfix hide-sm hide-md">
+          <h2 class="mb-1 h4 py-1">My projects</h2>
+          <div style="display: flex; align-items: center;">
+            <div style="margin-right: 10px; margin-top: 10px;">
+              <a href="https://github.com/looechao/CSUFT-Tally">
+                <img src="https://raw.githubusercontent.com/looechao/blogimg/main/tally4.png" style="max-width: 40%; height: auto;" alt="CSUFT-Tally" class="appreach__icon">
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
@@ -204,17 +218,19 @@ window.onscroll = function (e) {
   }
 };
 
-var style = localStorage.getItem('data-color-mode');
-iconElement = document.getElementById('github-icon');
-twitterIconElement = document.getElementById('twitter-icon');
+var style = localStorage.getItem('data-color-mode')
+githubIconElement = document.getElementById('github-icon')
+twitterIconElement = document.getElementById('twitter-icon')
 if (style == 'light') {
-  iconElement.setAttribute('fill', '#24292e');
-  twitterIconElement.setAttribute("fill","black")
+  if (githubIconElement) githubIconElement.setAttribute('fill', '#24292e')
+  if (twitterIconElement) twitterIconElement.setAttribute('fill', 'black')
 }
 else {
-  iconElement.removeAttribute('fill');
-  iconElement.setAttribute('class', 'octicon');
-  iconElement.setAttribute('color', '#f0f6fc');
-  twitterIconElement.setAttribute("fill","white")
+  if (githubIconElement) {
+    githubIconElement.removeAttribute('fill')
+    githubIconElement.setAttribute('class', 'octicon')
+    githubIconElement.setAttribute('color', '#f0f6fc')
+  }
+  if (twitterIconElement)  twitterIconElement.setAttribute('fill', 'white') 
 }
 </script>
